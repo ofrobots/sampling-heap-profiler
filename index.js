@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const profiler = require('bindings')('sampling_heap_profiler');
 let profiling = false;
 

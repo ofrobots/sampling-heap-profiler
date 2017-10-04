@@ -1,5 +1,7 @@
 # Sampling Heap Profiler
 
+**EXPERIMENTAL**
+
 This module adds supports for the experimental Sampling Heap Profiler in V8.
 This works by taking a random sample of objects, as they are allocated, to keep
 a statistical sample of what is live in the heap at any given time. This also
