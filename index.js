@@ -56,18 +56,3 @@ function translateToDevtools(node) {
   result.children = node.children.map(translateToDevtools);
   return result;
 }
-
-process.on('exit', () => {
-  if (profiling) {
-    profiler.stopSamplingHeapProfiler();
-    profiling = false;
-  }
-});
-
-process.on('uncaughtException', (e) => {
-  if (profiling) {
-    profiler.stopSamplingHeapProfiler();
-    profiling = false;
-  }
-  process.exit(1);
-});
