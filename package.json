@@ -1,6 +1,6 @@
 {
   "name": "heap-profile",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Support for V8's sampling heap profiler",
   "main": "index.js",
   "scripts": {
