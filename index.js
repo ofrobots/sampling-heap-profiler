@@ -18,6 +18,12 @@ module.exports.stop = () => {
   }
 };
 
+module.exports.get = () => {
+  if (!profiling) {
+    throw new Error('get can only be called after profiler has been started');
+  }
+  return profiler.getAllocationProfile();
+};
 
 module.exports.write = (filename, cb) => {
   if (!profiling) {
@@ -32,7 +38,7 @@ module.exports.write = (filename, cb) => {
     filename = `heap-profile-${Date.now()}.heapprofile`;
   }
 
-  const result = profiler.getAllocationProfile();
+  const result = module.exports.get();
   const devtoolsFormat = translateToDevtools(result);
   fs.writeFile(filename, JSON.stringify({head: devtoolsFormat}), (err) => {
     if (err) {
