@@ -1,5 +1,7 @@
 # Sampling Heap Profiler
 
+[![style badge][gts-image]][gts-url]
+
 **EXPERIMENTAL**
 
 This module adds supports for the experimental Sampling Heap Profiler in V8.
@@ -32,6 +34,10 @@ setInterval(() => {
 Starts sampling. You probably want to call this as close to the program startup
 as possible.
 
+### get()
+
+Returns the profile composed of a tree of nodes.
+
 ### write([filename], cb)
 
 Writes the current heap sample to a file. If the filename parameter is omitted,
@@ -48,3 +54,6 @@ call `start` again to start sampling again, but any objects allocated before
 be representative of the state of the heap.
 
 The sampling overhead is low enough that you probably don't need to use `stop`.
+
+[gts-image]: https://img.shields.io/badge/code%20style-Google-blue.svg
+[gts-url]: https://www.npmjs.com/package/gts
