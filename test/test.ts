@@ -15,9 +15,11 @@ function findNode(
 }
 
 function soManyAllocations() {
-  for (let i = 0; i < 5000; i++) {
-    const garbage = new Array(20000);
+  const A = [];
+  for (let i = 0; i < 10000; i++) {
+    A.push(new Array(2000));
   }
+  return A;
 }
 
 test.serial('get without start should throw', t => {
@@ -27,15 +29,10 @@ test.serial('get without start should throw', t => {
 });
 
 test.serial('get should return a valid profile', async t => {
-  // Schedule some work.
-  const timer = setInterval(soManyAllocations, 2);
-
   m.start();
-  await delay(3 * 1000);
+  const garbage = soManyAllocations();
   const profile = m.get();
   const node = findNode('soManyAllocations', profile);
   t.truthy(node);
-
-  // Cancel the scheduled work.
-  clearInterval(timer);
+  m.stop();
 });
