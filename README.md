@@ -12,8 +12,10 @@ keeps track of the stack that allocated a given sampled object. This means that
 you know not only what is live, but what code path allocated it. This is
 motivated by, and functions similarly to, the heap profiler built into tcmalloc.
 
-* The generated snapshots can be opened in DevTools.
 * This is supposed to be lightweight enough for in-production use on servers.
+* The generated snapshots can be saved offline, and be opened in DevTools later.
+
+![app.get seems to be leaking](doc/devtools-allocation-profile.png)
 
 ## Usage
 
