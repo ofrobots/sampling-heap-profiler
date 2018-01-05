@@ -14,7 +14,8 @@
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run check"
+    "posttest": "npm run check && npm run license-check",
+    "license-check": "jsgl --local ."
   },
   "keywords": [],
   "author": "Google Inc.",
@@ -31,6 +32,7 @@
     "ava": "^0.24.0",
     "delay": "^2.0.0",
     "gts": "^0.5.1",
+    "js-green-licenses": "^0.2.0",
     "typescript": "~2.6.0"
   },
   "files": [
