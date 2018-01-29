@@ -1,6 +1,6 @@
 
-import * as fs from 'fs';
-import * as pify from 'pify';
+
+import {writeAsync} from './write';
 
 export interface Allocation {
   size: number;
@@ -15,8 +15,6 @@ export interface AllocationProfileNode {
   allocations: Allocation[];
   children: AllocationProfileNode[];
 }
-
-const writeFilep = pify(fs.writeFile);
 
 const profiler = require('bindings')('sampling_heap_profiler');
 let profiling = false;
@@ -55,7 +53,7 @@ export function write(
     filename = undefined;
   }
 
-  const promise = profiling ? writeAsync(filename) :
+  const promise = profiling ? writeAsync(translateToDevtools(get()), filename) :
                               Promise.reject(new Error('profiler not running'));
   if (cb) {
     promise.then(cb.bind(null, null)).catch(cb);
@@ -64,22 +62,7 @@ export function write(
   }
 }
 
-async function writeAsync(filename?: string): Promise<string> {
-  if (!profiling) {
-    return Promise.reject(new Error('profiler not running'));
-  }
-
-  if (!filename) {
-    filename = `heap-profile-${Date.now()}.heapprofile`;
-  }
-
-  const result = translateToDevtools(get());
-  await writeFilep(JSON.stringify({head: result}));
-  return filename;
-}
-
-
-interface DevToolsProfileNode {
+export interface DevToolsProfileNode {
   functionName?: string;
   scriptId: number;
   lineNumber: number;
