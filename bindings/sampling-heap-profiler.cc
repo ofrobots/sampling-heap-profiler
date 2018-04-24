@@ -57,10 +57,10 @@ Local<Value> TranslateAllocationProfile(AllocationProfile::Node* node) {
 NAN_METHOD(StartSamplingHeapProfiler) {
   if (info.Length() == 2) {
     if (!info[0]->IsUint32()) {
-      return Nan::ThrowTypeError("First argument type must be uint32.");
+      return Nan::ThrowTypeError("First argument type must be a uint32.");
     }
     if (!info[1]->IsNumber()) {
-      return Nan::ThrowTypeError("First argument type must be Integer.");
+      return Nan::ThrowTypeError("Second argument type must be an integer.");
     }
     uint64_t sample_interval = info[0].As<Integer>()->Uint32Value();
     int stack_depth = info[1].As<Integer>()->IntegerValue();

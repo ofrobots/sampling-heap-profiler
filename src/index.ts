@@ -19,9 +19,14 @@ export interface AllocationProfileNode {
 const profiler = require('bindings')('sampling_heap_profiler');
 let profiling = false;
 
-export function start() {
+export function start(cfg?: {sampleIntervalBytes: number, stackDepth: number}) {
   if (!profiling) {
-    profiler.startSamplingHeapProfiler();
+    if (cfg) {
+      profiler.startSamplingHeapProfiler(
+          cfg.sampleIntervalBytes, cfg.stackDepth);
+    } else {
+      profiler.startSamplingHeapProfiler();
+    }
     profiling = true;
   }
 }
