@@ -36,7 +36,7 @@ workflows:
           requires:
             - node6
             - node8
-            - node9
+            - node10
           filters:
             branches:
               ignore: /.*/
@@ -55,7 +55,7 @@ jobs:
     <<: *unit_tests
   node9:
     docker:
-      - image: node:9
+      - image: node:10
         user: node
     <<: *unit_tests
 
