@@ -32,22 +32,35 @@ setInterval(() => {
 }, 60 * 60 * 1000).unref();
 ```
 
-### start()
+### heapProfile.start()
 
 Starts sampling. You probably want to call this as close to the program startup
 as possible.
 
-### get()
+### heapProfile.get()
 
 Returns the profile composed of a tree of nodes.
 
-### write([filename], cb)
+### heapProfile.write()
 
-Writes the current heap sample to a file. If the filename parameter is omitted,
-a default pattern of `heap-profile-${Date.now()}.heapprofile`.
+This function is overloaded with the following variants:
+
+```ts
+function write(): Promise<string>;
+function write(path: string): Promise<string>;
+function write(cb: Callback): void;
+function write(path: string, cb: Callback): void;
+
+interface Callback { (err: Error|null, path?: string): void; }
+```
+
+
+Writes the current heap sample to the path specified. If the path parameter is
+omitted, a file with the pattern `heap-profile-${Date.now()}.heapprofile` will
+be written to the current working directory.
 
 The callback returns error if profiling was not active at the time of call.
-Otherwise the name of the file is returned via the callback.
+Otherwise the output file path is returned via the callback or the promise.
 
 ### stop()
 
