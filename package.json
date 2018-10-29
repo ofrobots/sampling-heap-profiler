@@ -29,9 +29,9 @@
     "@types/delay": "^2.0.1",
     "@types/node": "^8.0.53",
     "@types/pify": "^3.0.0",
-    "ava": "^0.24.0",
+    "ava": "^0.25.0",
     "delay": "^2.0.0",
-    "gts": "^0.5.1",
+    "gts": "^0.8.0",
     "js-green-licenses": "^0.2.0",
     "typescript": "~2.6.0"
   },
