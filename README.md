@@ -1,7 +1,7 @@
 # Sampling Heap Profiler
 
 [![style badge][gts-image]][gts-url]
-[![Build Status][travis-image]][travis-url]
+[![CircleCI](https://circleci.com/gh/v8/sampling-heap-profiler.svg?style=svg)](https://circleci.com/gh/v8/sampling-heap-profiler)
 
 **EXPERIMENTAL**
 
@@ -74,5 +74,4 @@ The sampling overhead is low enough that you probably don't need to use `stop`.
 
 [gts-image]: https://img.shields.io/badge/code%20style-Google-blue.svg
 [gts-url]: https://www.npmjs.com/package/gts
-[travis-image]: https://travis-ci.org/v8/sampling-heap-profiler.svg?branch=master
-[travis-url]: https://travis-ci.org/v8/sampling-heap-profiler
+
