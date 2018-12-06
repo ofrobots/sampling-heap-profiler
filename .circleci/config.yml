@@ -11,15 +11,12 @@ unit_tests: &unit_tests
         name: Install modules and dependencies.
         command: npm install
     - run:
-        name: Compiles typescript to javascript.
-        command: npm run compile
-    - run:
         name: Run unit tests.
-        command: npm run test
-    # - run:
-    #     name: Submit coverage data to codecov.
-    #     command: npm run codecov
-    #     when: always
+        command: npm test
+    - run:
+        name: Submit coverage data to codecov.
+        command: npm run codecov
+        when: always
 
 version: 2.0
 workflows:
@@ -27,16 +24,19 @@ workflows:
   tests:
     jobs:
       - node6:
-           filters: *release_tags
+          filters: *release_tags
       - node8:
-           filters: *release_tags
-      - node9:
+          filters: *release_tags
+      - node10:
+          filters: *release_tags
+      - node11:
           filters: *release_tags
       - publish_npm:
           requires:
             - node6
             - node8
             - node10
+            - node11
           filters:
             branches:
               ignore: /.*/
@@ -53,15 +53,20 @@ jobs:
       - image: node:8
         user: node
     <<: *unit_tests
-  node9:
+  node10:
     docker:
       - image: node:10
+        user: node
+    <<: *unit_tests
+  node11:
+    docker:
+      - image: node:11
         user: node
     <<: *unit_tests
 
   publish_npm:
     docker:
-      - image: node:8
+      - image: node:10
         user: node
     steps:
       - checkout

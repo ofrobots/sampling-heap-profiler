@@ -45,7 +45,9 @@ export function get(): AllocationProfileNode {
   return profiler.getAllocationProfile();
 }
 
-export interface Callback { (err: Error|null, filename?: string): void; }
+export interface Callback {
+  (err: Error|null, filename?: string): void;
+}
 
 export function write(): Promise<string>;
 export function write(filename: string): Promise<string>;
