@@ -9,7 +9,10 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | b
 for version in ${node_versions}; do
   set +ex
   nvm install ${version}
+  nvm use ${version}
   set -ex
+
+  which npm
 
   npm install -g node-gyp
 
