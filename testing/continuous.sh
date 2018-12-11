@@ -1,4 +1,4 @@
 
 set -x
-cd github/samping-heap-profiler
+cd github/sampling-heap-profiler
 npm run compile
