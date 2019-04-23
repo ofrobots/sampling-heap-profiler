@@ -38,11 +38,15 @@ export function stop() {
   }
 }
 
-export function get(): AllocationProfileNode {
+export function get(translate: true): DevToolsProfileNode;
+export function get(translate?: false): AllocationProfileNode;
+export function get(translate?: boolean): AllocationProfileNode|
+    DevToolsProfileNode {
   if (!profiling) {
     throw new Error('get can only be called after profiler has been started');
   }
-  return profiler.getAllocationProfile();
+  const profile = profiler.getAllocationProfile();
+  return translate ? translateToDevtools(profile) : profile;
 }
 
 export interface Callback {

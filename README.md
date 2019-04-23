@@ -37,9 +37,10 @@ setInterval(() => {
 Starts sampling. You probably want to call this as close to the program startup
 as possible.
 
-### heapProfile.get()
+### heapProfile.get(translate?: boolean)
 
-Returns the profile composed of a tree of nodes.
+Returns the profile composed of a tree of nodes (V8 format). When the optional
+parameter `translate` is true, the returned profile is in DevTools format.
 
 ### heapProfile.write()
 
