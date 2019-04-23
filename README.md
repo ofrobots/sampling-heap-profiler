@@ -3,9 +3,7 @@
 [![style badge][gts-image]][gts-url]
 [![CircleCI](https://circleci.com/gh/v8/sampling-heap-profiler.svg?style=svg)](https://circleci.com/gh/v8/sampling-heap-profiler)
 
-**EXPERIMENTAL**
-
-This module adds supports for the experimental Sampling Heap Profiler in V8.
+This module adds supports for the Sampling Heap Profiler in V8.
 This works by taking a random sample of objects, as they are allocated, to keep
 a statistical sample of what is live in the heap at any given time. This also
 keeps track of the stack that allocated a given sampled object. This means that
