@@ -44,5 +44,8 @@
     "LICENSE",
     "binding.gyp",
     "package.json"
-  ]
+  ],
+  "engines": {
+    "node": ">=8"
+  }
 }
