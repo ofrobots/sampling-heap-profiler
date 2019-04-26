@@ -1,11 +1,12 @@
-
 import test from 'ava';
 import * as delay from 'delay';
 
 import * as m from '../src/index';
 
 function findNode(
-    name: string, node: m.AllocationProfileNode): m.AllocationProfileNode|null {
+  name: string,
+  node: m.AllocationProfileNode
+): m.AllocationProfileNode | null {
   if (node.name === name) return node;
   for (const child of node.children) {
     const result = findNode(name, child);
