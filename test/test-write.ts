@@ -10,20 +10,23 @@ test('writeAsync should write', async t => {
 
   const originalWriteFile = fs.writeFile;
 
-  fs.writeFile =
-      (file: string, data: string, callback: (...args: Array<{}>) => void) => {
-        const profile = JSON.parse(data);  // should not crash.
+  fs.writeFile = (
+    file: string,
+    data: string,
+    callback: (...args: Array<{}>) => void
+  ) => {
+    const profile = JSON.parse(data); // should not crash.
 
-        if (profile.head === 'profile1') {
-          t.truthy(/heap-profile-\d+\.heapprofile/.test(file));
-        } else {
-          t.deepEqual(file, 'fake-filename');
-        }
+    if (profile.head === 'profile1') {
+      t.truthy(/heap-profile-\d+\.heapprofile/.test(file));
+    } else {
+      t.deepEqual(file, 'fake-filename');
+    }
 
-        setImmediate(callback);
-      };
+    setImmediate(callback);
+  };
 
-  const {writeAsync} = require('../src/write');
+  const { writeAsync } = require('../src/write');
 
   t.plan(2);
   // Make sure we use the default pattern when filename is omitted.
