@@ -23,7 +23,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "bindings": "^1.5.0",
-    "nan": "^2.13.2",
+    "nan": "^2.14.0",
     "pify": "^3.0.0"
   },
   "devDependencies": {

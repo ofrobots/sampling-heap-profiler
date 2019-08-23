@@ -62,8 +62,8 @@ NAN_METHOD(StartSamplingHeapProfiler) {
     if (!info[1]->IsNumber()) {
       return Nan::ThrowTypeError("Second argument type must be an integer.");
     }
-    uint64_t sample_interval = info[0].As<Integer>()->Uint32Value();
-    int stack_depth = info[1].As<Integer>()->IntegerValue();
+    uint64_t sample_interval = info[0].As<Integer>()->Uint32Value(Nan::GetCurrentContext()).FromJust();
+    int stack_depth = info[1].As<Integer>()->IntegerValue(Nan::GetCurrentContext()).FromJust();
     info.GetIsolate()->GetHeapProfiler()->
       StartSamplingHeapProfiler(sample_interval, stack_depth);
   } else {
