@@ -43,6 +43,11 @@ workflows:
             <<: *release_tags
 
 jobs:
+  build:
+    docker:
+      - image: node:12
+        user: node
+    <<: *unit_tests
   node8:
     docker:
       - image: node:8
